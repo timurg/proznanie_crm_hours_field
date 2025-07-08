@@ -29,8 +29,13 @@ if ($result['rest_only'] === false) {
 
 // Регистрация точек встраивания
 if ($result['install'] == true) {
+
     // Регистрация обработчика пользовательского типа поля
-    $handlerUrl = 'https://office.elearningrb.ru/apps/crm_field_time/app.php';
+    require_once(__DIR__.'/settings.php');
+    if (!defined('CRM_FIELD_TIME_HANDLER_URL')) {
+        die('Необходимо объявить константу CRM_FIELD_TIME_HANDLER_URL в settings.php');
+    }
+    $handlerUrl = CRM_FIELD_TIME_HANDLER_URL;
     $type = 'phone_data';
     $propCode = 'PHONE_DATA'; // max length with prefix UF_CRM_ 20 char
 
